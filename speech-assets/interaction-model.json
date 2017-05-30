@@ -1,0 +1,102 @@
+{
+  "intents": [
+    {
+      "intent": "RingCentralSendSMSIntent",
+      "samples": [
+        "send text {hello world | MessageText}",
+        "send text {hello world | MessageText} to {John | FirstName} {Wang | LastName}"
+      ],
+      "slots": [
+        {
+          "name": "MessageText",
+          "type": "AMAZON.LITERAL"
+        },
+        {
+          "name": "FirstName",
+          "type": "AMAZON.US_FIRST_NAME"
+        },
+        {
+          "name": "LastName",
+          "type": "LAST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "RingCentralSendSMSStartIntent",
+      "samples": [
+        "to text {FirstName}",
+        "send text to {FirstName}",
+        "send text to {John | FirstName} {Wang | LastName}"
+      ],
+      "slots": [
+        {
+          "name": "FirstName",
+          "type": "AMAZON.US_FIRST_NAME"
+        },
+        {
+          "name": "LastName",
+          "type": "LAST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "RingCentralSendSMSIntentBody",
+      "slots": [
+        {
+          "name": "MessageText",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "RingCentralSendSMSBodyIntent",
+      "samples": [
+        "{messageText}",
+        "send text to {John | FirstName} {Wang | LastName}"
+      ],
+      "slots": [
+        {
+          "name": "MessageText",
+          "type": "AMAZON.LITERAL"
+        },
+        {
+          "name": "FirstName",
+          "type": "AMAZON.US_FIRST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "RingCentralCreateRingOutIntent",
+      "samples": [
+        "call {FirstName}",
+        "dial {FirstName}"
+      ],
+      "slots": [
+        {
+          "name": "FirstName",
+          "type": "AMAZON.US_FIRST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "RingCentralGetNewVoicemailCountIntent"
+    }
+  ],
+  "types": [
+    {
+      "name": "LAST_NAME",
+      "values": [
+        {
+          "name": {
+            "value": "wang"
+          }
+        },
+        {
+          "name": {
+            "value": "yang"
+          }
+        }
+      ]
+    }
+  ]
+}

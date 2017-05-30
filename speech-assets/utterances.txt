@@ -1,0 +1,21 @@
+RingCentralGetNewVoicemailCountIntent check voicemail
+RingCentralGetNewVoicemailCountIntent check voicemail count
+RingCentralGetNewVoicemailCountIntent check my voicemail
+RingCentralGetNewVoicemailCountIntent give me voicemail
+RingCentralGetNewVoicemailCountIntent give me voicemails
+RingCentralGetNewVoicemailCountIntent voicemail count
+RingCentralGetNewVoicemailCountIntent ask ringcentral to check my voicemail
+RingCentralSendSMSIntent send text to {FirstName} message {hello world | MessageText}
+RingCentralSendSMSIntent ask ringcentral to text {FirstName}
+RingCentralSendSMSIntent ask ringcentral to text {FirstName} message {hello world | MessageText}
+RingCentralSendSMSIntent ask ringcentral to text {FirstName} message {how are you | MessageText}
+RingCentralSendSMSIntent ask ringcentral to text {FirstName} message {what's up | MessageText}
+RingCentralSendSMSIntentBody text message {thanks|MessageText}
+RingCentralSendSMSIntentBody ringcentral message {thanks|MessageText}
+RingCentralSendSMSIntentBody ask ringcentral to send message {thanks|MessageText}
+RingCentralSendSMSIntentBody ask ringcentral to text message {thanks|MessageText}
+RingCentralSendSMSIntent {hello there|MessageText}
+RingCentralSendSMSIntent {how are you|MessageText}
+RingCentralSendSMSIntent {see you then|MessageText}
+RingCentralSendSMSIntent {thanks|MessageText}
+RingCentralCreateRingOutIntent ask ringcentral to call {FirstName}
