@@ -4,9 +4,12 @@
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
+[![Stack Overflow][stackoverflow-svg]][stackoverflow-url]
+[![Chat][chat-svg]][chat-url]
+
 To get started see `bin/startserver.go`.
 
-# References
+## References
 
 * [Developing an Amazon Alexa Skill on Rails](http://tech.taskrabbit.com/blog/2016/12/02/amazon-alexa-rails/) by [Brian Leonard](https://github.com/bleonard)
 
@@ -16,3 +19,7 @@ To get started see `bin/startserver.go`.
  [docs-godoc-link]: https://godoc.org/github.com/grokify/alexa-skill-ringcentral-go-demo
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-link]: https://github.com/grokify/alexa-skill-ringcentral-go-demo/blob/master/LICENSE.md
+ [chat-svg]: https://img.shields.io/badge/chat-on%20glip-orange.svg
+ [chat-url]: https://glipped.herokuapp.com/
+ [stackoverflow-svg]: https://img.shields.io/badge/Stack%20Overflow-ringcentral-orange.svg
+ [stackoverflow-url]: https://stackoverflow.com/questions/tagged/ringcentral
