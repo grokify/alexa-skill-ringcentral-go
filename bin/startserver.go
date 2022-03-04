@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/grokify/gotilla/fmt/fmtutil"
+	"github.com/grokify/mogo/fmt/fmtutil"
 	"github.com/joho/godotenv"
 	"github.com/patrickmn/go-cache"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/grokify/alexa-skill-ringcentral-go"
+	rcskillserver "github.com/grokify/alexa-skill-ringcentral-go"
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
 )
 

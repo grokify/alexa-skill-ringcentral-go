@@ -5,16 +5,16 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
 
+	"github.com/grokify/mogo/net/httputilmore"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
 	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/requests"
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 	log "github.com/sirupsen/logrus"
-
-	"github.com/grokify/gotilla/net/httputil"
 
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
 	"github.com/grokify/alexa-skill-ringcentral-go/src/intents/sms"
@@ -82,10 +82,10 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 		URL:     "/account/~/extension/~/sms",
 		Headers: http.Header{},
 		Body:    bytes.NewReader(rcReqBodyBytes)}
-	rcReq.Headers.Add(httputil.ContentTypeHeader, httputil.ContentTypeValueJSONUTF8)
+	rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJsonUtf8)
 
 	rcResp, err := cfg.Platform.APICall(rcReq)
-	rcRespBody, err := httputil.ResponseBody(rcResp)
+	rcRespBody, err := io.ReadAll(rcResp.Body)
 
 	log.WithFields(log.Fields{
 		"type":   "rc.response",

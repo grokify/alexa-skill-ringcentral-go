@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
 
-	"github.com/grokify/gotilla/net/httputil"
+	"github.com/grokify/mogo/net/httputilmore"
 	"github.com/patrickmn/go-cache"
 	log "github.com/sirupsen/logrus"
 
@@ -81,11 +82,11 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 			URL:     "/account/~/extension/~/sms",
 			Headers: http.Header{},
 			Body:    bytes.NewReader(reqBytes)}
-		req2.Headers.Add(httputil.ContentTypeHeader, httputil.ContentTypeValueJSONUTF8)
+		req2.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJsonUtf8)
 
 		resp, err := cfg.Platform.APICall(req2)
 
-		rcRespBody, err := httputil.ResponseBody(resp)
+		rcRespBody, err := io.ReadAll(resp.Body)
 
 		log.WithFields(log.Fields{
 			"type": "rc.response.status_code"}).Info(fmt.Sprintf("%v", resp.StatusCode))

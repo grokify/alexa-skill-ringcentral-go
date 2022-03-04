@@ -3,12 +3,12 @@ package voicemailcount
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
 
-	"github.com/grokify/gotilla/net/httputil"
-	"github.com/grokify/gotilla/time/timeutil"
+	"github.com/grokify/mogo/time/timeutil"
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 	log "github.com/sirupsen/logrus"
 
@@ -33,7 +33,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 	if err != nil {
 		return IntentErrorResponse()
 	}
-	body, err := httputil.ResponseBody(resp)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return IntentErrorResponse()
 	}
