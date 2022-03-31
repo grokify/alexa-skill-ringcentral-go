@@ -82,7 +82,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 		URL:     "/account/~/extension/~/sms",
 		Headers: http.Header{},
 		Body:    bytes.NewReader(rcReqBodyBytes)}
-	rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJsonUtf8)
+	rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
 
 	rcResp, err := cfg.Platform.APICall(rcReq)
 	rcRespBody, err := io.ReadAll(rcResp.Body)

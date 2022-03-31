@@ -62,7 +62,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 			URL:     "/account/~/extension/~/ringout",
 			Headers: http.Header{},
 			Body:    bytes.NewReader(reqBytes)}
-		rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJsonUtf8)
+		rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
 
 		resp, err := cfg.Platform.APICall(rcReq)
 
