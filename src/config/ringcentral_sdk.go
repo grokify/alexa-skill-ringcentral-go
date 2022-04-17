@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/grokify/ringcentral-sdk-go"
+	rcsdk "github.com/grokify/ringcentral-sdk-go"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/platform"
 )
 

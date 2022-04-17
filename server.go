@@ -11,8 +11,8 @@ import (
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
 	"github.com/grokify/alexa-skill-ringcentral-go/src/intents/ringout"
 	"github.com/grokify/alexa-skill-ringcentral-go/src/intents/sms"
-	"github.com/grokify/alexa-skill-ringcentral-go/src/intents/sms_body"
-	"github.com/grokify/alexa-skill-ringcentral-go/src/intents/voicemail_count"
+	smsbody "github.com/grokify/alexa-skill-ringcentral-go/src/intents/sms_body"
+	voicemailcount "github.com/grokify/alexa-skill-ringcentral-go/src/intents/voicemail_count"
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 )
 
