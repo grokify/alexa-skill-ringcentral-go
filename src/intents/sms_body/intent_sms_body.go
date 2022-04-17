@@ -45,7 +45,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 
 	messageText := echoReq.Request.Intent.Slots["MessageText"].Value
 
-	if len(strings.TrimSpace(messageText)) < 0 {
+	if len(strings.TrimSpace(messageText)) == 0 {
 		return IntentErrorResponse(GenericError)
 	}
 
