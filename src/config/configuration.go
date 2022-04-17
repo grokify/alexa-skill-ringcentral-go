@@ -2,7 +2,6 @@ package config
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -86,7 +85,7 @@ func (ab *AddressBook) GetContactByFirstName(firstName string) (Contact, error) 
 			return ab.Contacts[idx], nil
 		}
 	}
-	return Contact{}, errors.New(fmt.Sprintf("Contact Not Found: %v", firstName))
+	return Contact{}, fmt.Errorf("Contact Not Found: %v", firstName)
 }
 
 type Contact struct {
