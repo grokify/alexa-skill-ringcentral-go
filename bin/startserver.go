@@ -16,18 +16,18 @@ import (
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatal("error loading .env file")
 	}
 
 	cfg, err := config.NewConfiguration()
 	if err != nil {
-		fmt.Printf("Error [%v]\n", err)
-		panic("E_CONFIG_FAILURE")
+		fmt.Printf("error [%v]\n", err)
+		panic("error config failure")
 	}
 	cfg.Port = 3000
 	cfg.LogLevel = log.DebugLevel
 
-	fmtutil.PrintJSON(cfg)
+	fmtutil.MustPrintJSON(cfg)
 
 	cfg.Cache = cache.New(5*time.Minute, 10*time.Minute)
 
