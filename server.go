@@ -3,6 +3,7 @@ package rcskillserver
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 
 	"github.com/buaazp/fasthttprouter"
 	log "github.com/sirupsen/logrus"
@@ -13,6 +14,7 @@ import (
 	"github.com/grokify/alexa-skill-ringcentral-go/src/intents/sms"
 	smsbody "github.com/grokify/alexa-skill-ringcentral-go/src/intents/sms_body"
 	voicemailcount "github.com/grokify/alexa-skill-ringcentral-go/src/intents/voicemail_count"
+	"github.com/grokify/mogo/net/httputilmore"
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 )
 
@@ -31,7 +33,14 @@ func NewHandler(cfg config.Configuration) Handler {
 
 func (h *Handler) HandleFastHTTP(ctx *fasthttp.RequestCtx) {
 	echoReq := &alexa.EchoRequest{}
-	json.Unmarshal(ctx.PostBody(), echoReq)
+	err := json.Unmarshal(ctx.PostBody(), echoReq)
+	if err != nil {
+		log.WithFields(log.Fields{
+			"error": err.Error()})
+		ctx.SetContentType(httputilmore.ContentTypeTextPlainUsASCII)
+		ctx.SetStatusCode(http.StatusInternalServerError)
+		ctx.SetBodyString("Internal Server Error")
+	}
 
 	log.WithFields(log.Fields{
 		"sessionID": echoReq.Session.SessionID,
@@ -62,7 +71,7 @@ func (h *Handler) HandleFastHTTP(ctx *fasthttp.RequestCtx) {
 		"sessionID": echoReq.Session.SessionID,
 		"body":      string(echoRespBytes)}).Info("HandleFastHTTP Response")
 
-	ctx.Response.Header.Set("Content-Type", "application/json")
+	ctx.Response.Header.Set(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
 	fmt.Fprintln(ctx, string(echoRespBytes))
 }
 
