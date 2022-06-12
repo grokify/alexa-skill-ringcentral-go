@@ -67,7 +67,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 			log.WithFields(log.Fields{
 				"type":  "http request error",
 				"error": err.Error(),
-			}).Warn(fmt.Sprintf("ringout API call failed"))
+			}).Warn("ringout API call failed")
 			return IntentErrorResponse(fmt.Sprintf("I'm sorry but I couldn't find  %v", firstName))
 		}
 

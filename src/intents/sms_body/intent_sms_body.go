@@ -87,8 +87,8 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 	rcResp, err := cfg.Platform.APICall(rcReq)
 	if err != nil || rcResp.StatusCode >= 400 {
 		log.WithFields(log.Fields{
-			"type":   "rc.api.response",
-			"error":  err.Error()}).
+			"type":  "rc.api.response",
+			"error": err.Error()}).
 			Warn("API response failure")
 		return IntentErrorResponse(fmt.Sprintf("An error occurred calling %v", contact.FullName()))
 	}
