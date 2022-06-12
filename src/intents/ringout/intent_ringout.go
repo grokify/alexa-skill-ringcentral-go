@@ -18,8 +18,6 @@ import (
 )
 
 func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
-	echoResp := alexa.NewEchoResponse()
-
 	intent := echoReq.Request.Intent
 	firstName := intent.Slots["FirstName"].Value
 
@@ -58,13 +56,20 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 		}
 
 		rcReq := rchttp.Request2{
-			Method:  "post",
+			Method:  http.MethodPost,
 			URL:     "/account/~/extension/~/ringout",
 			Headers: http.Header{},
 			Body:    bytes.NewReader(reqBytes)}
 		rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
 
 		resp, err := cfg.Platform.APICall(rcReq)
+		if err != nil {
+			log.WithFields(log.Fields{
+				"type":  "http request error",
+				"error": err.Error(),
+			}).Warn(fmt.Sprintf("ringout API call failed"))
+			return IntentErrorResponse(fmt.Sprintf("I'm sorry but I couldn't find  %v", firstName))
+		}
 
 		rcRespBody, err := io.ReadAll(resp.Body)
 
@@ -90,7 +95,8 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 
 	actionText := fmt.Sprintf("Calling %s", contact.FullName())
 
-	echoResp = alexa.NewEchoResponse().OutputSpeech(
+	// echoResp := alexa.NewEchoResponse()
+	echoResp := alexa.NewEchoResponse().OutputSpeech(
 		actionText).Card("Alexa RingCentral", actionText).EndSession(true)
 
 	return echoResp

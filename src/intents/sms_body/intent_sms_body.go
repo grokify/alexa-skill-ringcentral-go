@@ -78,13 +78,21 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 	}
 
 	rcReq := rchttp.Request2{
-		Method:  "post",
+		Method:  http.MethodPost,
 		URL:     "/account/~/extension/~/sms",
 		Headers: http.Header{},
 		Body:    bytes.NewReader(rcReqBodyBytes)}
 	rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
 
 	rcResp, err := cfg.Platform.APICall(rcReq)
+	if err != nil || rcResp.StatusCode >= 400 {
+		log.WithFields(log.Fields{
+			"type":   "rc.api.response",
+			"error":  err.Error()}).
+			Warn("API response failure")
+		return IntentErrorResponse(fmt.Sprintf("An error occurred calling %v", contact.FullName()))
+	}
+
 	rcRespBody, err := io.ReadAll(rcResp.Body)
 
 	log.WithFields(log.Fields{
