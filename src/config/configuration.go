@@ -3,7 +3,6 @@ package config
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -107,7 +106,7 @@ func (c *Contact) FullName() string {
 
 func GetAddressBook(filepath string) (AddressBook, error) {
 	ad := AddressBook{}
-	bytes, err := ioutil.ReadFile(filepath)
+	bytes, err := os.ReadFile(filepath)
 	if err != nil {
 		return ad, err
 	}
