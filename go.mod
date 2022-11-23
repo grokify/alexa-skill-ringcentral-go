@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/buaazp/fasthttprouter v0.1.1
-	github.com/grokify/mogo v0.41.1
+	github.com/grokify/mogo v0.41.4
 	github.com/grokify/ringcentral-sdk-go v0.3.0
 	github.com/joho/godotenv v1.4.0
 	github.com/mikeflynn/go-alexa v0.0.0-20211022155346-6d20dc2c7771
