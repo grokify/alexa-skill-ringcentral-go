@@ -10,7 +10,7 @@ require (
 	github.com/mikeflynn/go-alexa v0.0.0-20211022155346-6d20dc2c7771
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/sirupsen/logrus v1.9.0
-	github.com/valyala/fasthttp v1.41.0
+	github.com/valyala/fasthttp v1.43.0
 )
 
 require (
