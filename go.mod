@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/buaazp/fasthttprouter v0.1.1
-	github.com/grokify/mogo v0.41.1
+	github.com/grokify/mogo v0.41.10
 	github.com/grokify/ringcentral-sdk-go v0.3.0
 	github.com/joho/godotenv v1.4.0
 	github.com/mikeflynn/go-alexa v0.0.0-20211022155346-6d20dc2c7771
@@ -26,7 +26,7 @@ require (
 	github.com/urfave/negroni v1.0.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fastjson v1.6.3 // indirect
-	golang.org/x/exp v0.0.0-20221114191408-850992195362 // indirect
+	golang.org/x/exp v0.0.0-20221126150942-6ab00d035af9 // indirect
 	golang.org/x/sys v0.2.0 // indirect
 	golang.org/x/text v0.4.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
