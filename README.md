@@ -13,7 +13,7 @@ To get started see `bin/startserver.go`.
 
 * [Developing an Amazon Alexa Skill on Rails](http://tech.taskrabbit.com/blog/2016/12/02/amazon-alexa-rails/) by [Brian Leonard](https://github.com/bleonard)
 
- [build-status-svg]: https://github.com/grokify/alexa-skill-ringcentral-go/workflows/go%20build/badge.svg?branch=master
+ [build-status-svg]: https://github.com/grokify/alexa-skill-ringcentral-go/workflows/test/badge.svg?branch=master
  [build-status-url]: https://github.com/grokify/alexa-skill-ringcentral-go/actions/workflows/test.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/alexa-skill-ringcentral-go
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/alexa-skill-ringcentral-go
