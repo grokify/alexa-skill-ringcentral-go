@@ -8,14 +8,14 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/grokify/mogo/net/httputilmore"
+	"github.com/grokify/mogo/net/http/httputilmore"
+	alexa "github.com/mikeflynn/go-alexa/skillserver"
 	"github.com/patrickmn/go-cache"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
 	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/requests"
-	alexa "github.com/mikeflynn/go-alexa/skillserver"
 
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
 )

@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/grokify/mogo/net/httputilmore"
+	"github.com/grokify/mogo/net/http/httputilmore"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
 	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/requests"
