@@ -8,13 +8,13 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/grokify/mogo/net/http/httpsimple"
 	"github.com/grokify/mogo/net/http/httputilmore"
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 	"github.com/patrickmn/go-cache"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
-	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/requests"
 
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
@@ -77,7 +77,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 			}).Info(string(reqBytes))
 		}
 
-		req2 := rchttp.Request2{
+		req2 := httpsimple.SimpleRequest{
 			Method:  "post",
 			URL:     "/account/~/extension/~/sms",
 			Headers: http.Header{},

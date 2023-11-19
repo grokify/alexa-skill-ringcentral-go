@@ -8,11 +8,10 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/grokify/mogo/net/http/httpsimple"
 	"github.com/grokify/mogo/time/timeutil"
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 	log "github.com/sirupsen/logrus"
-
-	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
 )
@@ -57,7 +56,7 @@ func IntentErrorResponse() *alexa.EchoResponse {
 		"Alexa RingCentral", "could not retrieve voicemail count").EndSession(true)
 }
 
-func BuildSDKRequest() rchttp.Request2 {
+func BuildSDKRequest() httpsimple.SimpleRequest {
 	params := url.Values{}
 	params.Add("direction", "Inbound")
 	params.Add("messageType", "VoiceMail")
@@ -73,7 +72,7 @@ func BuildSDKRequest() rchttp.Request2 {
 		params.Add("dateFrom", dtYear.Format(time.RFC3339))
 	}
 
-	rcReq := rchttp.Request2{
+	rcReq := httpsimple.SimpleRequest{
 		Method:  "get",
 		URL:     "/account/~/extension/~/message-store",
 		Query:   params,

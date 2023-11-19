@@ -7,10 +7,11 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/grokify/mogo/net/http/httpsimple"
 	"github.com/grokify/mogo/net/http/httputilmore"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
-	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/requests"
+
 	alexa "github.com/mikeflynn/go-alexa/skillserver"
 	log "github.com/sirupsen/logrus"
 
@@ -55,7 +56,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 			}).Info(string(reqBytes))
 		}
 
-		rcReq := rchttp.Request2{
+		rcReq := httpsimple.SimpleRequest{
 			Method:  http.MethodPost,
 			URL:     "/account/~/extension/~/ringout",
 			Headers: http.Header{},
