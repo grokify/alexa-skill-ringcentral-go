@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/platform"
-	"github.com/patrickmn/go-cache"
+	cache "github.com/patrickmn/go-cache"
 	log "github.com/sirupsen/logrus"
 )
 
