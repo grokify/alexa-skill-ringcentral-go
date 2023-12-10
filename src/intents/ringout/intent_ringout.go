@@ -56,7 +56,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 			}).Info(string(reqBytes))
 		}
 
-		rcReq := httpsimple.SimpleRequest{
+		rcReq := httpsimple.Request{
 			Method:  http.MethodPost,
 			URL:     "/account/~/extension/~/ringout",
 			Headers: http.Header{},

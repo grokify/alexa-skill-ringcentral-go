@@ -77,7 +77,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 			}).Info(string(reqBytes))
 		}
 
-		req2 := httpsimple.SimpleRequest{
+		req2 := httpsimple.Request{
 			Method:  "post",
 			URL:     "/account/~/extension/~/sms",
 			Headers: http.Header{},

@@ -56,7 +56,7 @@ func IntentErrorResponse() *alexa.EchoResponse {
 		"Alexa RingCentral", "could not retrieve voicemail count").EndSession(true)
 }
 
-func BuildSDKRequest() httpsimple.SimpleRequest {
+func BuildSDKRequest() httpsimple.Request {
 	params := url.Values{}
 	params.Add("direction", "Inbound")
 	params.Add("messageType", "VoiceMail")
@@ -72,7 +72,7 @@ func BuildSDKRequest() httpsimple.SimpleRequest {
 		params.Add("dateFrom", dtYear.Format(time.RFC3339))
 	}
 
-	rcReq := httpsimple.SimpleRequest{
+	rcReq := httpsimple.Request{
 		Method:  "get",
 		URL:     "/account/~/extension/~/message-store",
 		Query:   params,
