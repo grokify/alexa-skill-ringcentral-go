@@ -6,7 +6,7 @@ go 1.21
 
 require (
 	github.com/buaazp/fasthttprouter v0.1.1
-	github.com/grokify/mogo v0.62.2
+	github.com/grokify/mogo v0.62.3
 	github.com/grokify/ringcentral-sdk-go v0.3.4
 	github.com/joho/godotenv v1.5.1
 	github.com/mikeflynn/go-alexa v0.0.0-20211022155346-6d20dc2c7771
