@@ -6,7 +6,7 @@ go 1.21
 
 require (
 	github.com/buaazp/fasthttprouter v0.1.1
-	github.com/grokify/mogo v0.62.6
+	github.com/grokify/mogo v0.62.7
 	github.com/grokify/ringcentral-sdk-go v0.3.4
 	github.com/joho/godotenv v1.5.1
 	github.com/mikeflynn/go-alexa v0.0.0-20211022155346-6d20dc2c7771
@@ -25,7 +25,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/urfave/negroni v1.0.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	golang.org/x/exp v0.0.0-20231219180239-dc181d75b848 // indirect
-	golang.org/x/sys v0.15.0 // indirect
+	golang.org/x/exp v0.0.0-20240112132812-db7319d0e0e3 // indirect
+	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 )
