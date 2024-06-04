@@ -1,12 +1,13 @@
 module github.com/grokify/alexa-skill-ringcentral-go
 
 go 1.21
+toolchain go1.22.3
 
 // toolchain go1.21.1
 
 require (
 	github.com/buaazp/fasthttprouter v0.1.1
-	github.com/grokify/mogo v0.63.1
+	github.com/grokify/mogo v0.64.3
 	github.com/grokify/ringcentral-sdk-go v0.3.4
 	github.com/joho/godotenv v1.5.1
 	github.com/mikeflynn/go-alexa v0.0.0-20211022155346-6d20dc2c7771
@@ -25,7 +26,8 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/urfave/negroni v1.0.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	golang.org/x/exp v0.0.0-20240119083558-1b970713d09a // indirect
-	golang.org/x/sys v0.17.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/exp v0.0.0-20240531132922-fd00a4e0eefc // indirect
+	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/text v0.15.0 // indirect
 )
