@@ -1,6 +1,7 @@
 package config
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -43,7 +44,7 @@ func (c *Configuration) LoadEnv() {
 	c.RcPhoneNumberSMS = os.Getenv("RC_PHONE_NUMBER_SMS")
 }
 
-func NewConfiguration() (Configuration, error) {
+func NewConfiguration(ctx context.Context) (Configuration, error) {
 	cfg := Configuration{}
 	cfg.LoadEnv()
 
@@ -53,7 +54,7 @@ func NewConfiguration() (Configuration, error) {
 	}
 	cfg.AddressBook = addr
 
-	sdk, err := GetRingCentralSdk(cfg)
+	sdk, err := GetRingCentralSdk(ctx, cfg)
 	if err != nil {
 		return cfg, err
 	}

@@ -2,6 +2,7 @@ package smsbody
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -37,7 +38,7 @@ func GetSessionData(cfg config.Configuration, sessionID string) (sms.SessionInfo
 	return alexaSessionData, err
 }
 
-func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
+func HandleRequest(ctx context.Context, cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
 	alexaSessionData, err := GetSessionData(cfg, echoReq.Session.SessionID)
 	if err != nil {
 		return IntentErrorResponse(GenericError)
@@ -84,7 +85,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 		Body:    bytes.NewReader(rcReqBodyBytes)}
 	rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
 
-	rcResp, err := cfg.Platform.APICall(rcReq)
+	rcResp, err := cfg.Platform.APICall(ctx, rcReq)
 	if err != nil || rcResp.StatusCode >= 400 {
 		log.WithFields(log.Fields{
 			"type":  "rc.api.response",

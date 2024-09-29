@@ -2,6 +2,7 @@ package sms
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -20,7 +21,7 @@ import (
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
 )
 
-func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
+func HandleRequest(ctx context.Context, cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
 	// var echoResp  alexa.NewEchoResponse()
 
 	intent := echoReq.Request.Intent
@@ -78,13 +79,13 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 		}
 
 		req2 := httpsimple.Request{
-			Method:  "post",
+			Method:  http.MethodPost,
 			URL:     "/account/~/extension/~/sms",
 			Headers: http.Header{},
 			Body:    bytes.NewReader(reqBytes)}
 		req2.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
 
-		resp, err := cfg.Platform.APICall(req2)
+		resp, err := cfg.Platform.APICall(ctx, req2)
 		if err != nil || resp.StatusCode >= 400 {
 			log.WithFields(log.Fields{
 				"type":   "rc.response",

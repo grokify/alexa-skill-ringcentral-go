@@ -1,6 +1,7 @@
 package voicemailcount
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -16,13 +17,13 @@ import (
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
 )
 
-func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
+func HandleRequest(ctx context.Context, cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
 	log.WithFields(log.Fields{
 		"type":   "intent.voicemail",
 		"status": "start handling request",
 	}).Debug("Starting voicemail count request.")
 
-	resp, err := cfg.Platform.APICall(BuildSDKRequest())
+	resp, err := cfg.Platform.APICall(ctx, BuildSDKRequest())
 
 	log.WithFields(log.Fields{
 		"type":   "rcsdk.status",
@@ -73,7 +74,7 @@ func BuildSDKRequest() httpsimple.Request {
 	}
 
 	rcReq := httpsimple.Request{
-		Method:  "get",
+		Method:  http.MethodGet,
 		URL:     "/account/~/extension/~/message-store",
 		Query:   params,
 		Headers: http.Header{}}

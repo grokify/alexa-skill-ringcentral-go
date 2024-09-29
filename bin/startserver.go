@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -19,7 +20,7 @@ func main() {
 		log.Fatal("error loading .env file")
 	}
 
-	cfg, err := config.NewConfiguration()
+	cfg, err := config.NewConfiguration(context.Background())
 	if err != nil {
 		fmt.Printf("error [%v]\n", err)
 		panic("error config failure")

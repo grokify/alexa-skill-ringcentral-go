@@ -1,6 +1,7 @@
 package rcskillserver
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -32,32 +33,34 @@ func NewHandler(cfg config.Configuration) Handler {
 	return Handler{Configuration: cfg}
 }
 
-func (h *Handler) HandleFastHTTP(ctx *fasthttp.RequestCtx) {
+func (h *Handler) HandleFastHTTP(fctx *fasthttp.RequestCtx) {
 	echoReq := &alexa.EchoRequest{}
-	err := json.Unmarshal(ctx.PostBody(), echoReq)
+	err := json.Unmarshal(fctx.PostBody(), echoReq)
 	if err != nil {
 		log.WithFields(log.Fields{
 			"error": err.Error()})
-		ctx.SetContentType(httputilmore.ContentTypeTextPlainUsASCII)
-		ctx.SetStatusCode(http.StatusInternalServerError)
-		ctx.SetBodyString("Internal Server Error")
+		fctx.SetContentType(httputilmore.ContentTypeTextPlainUsASCII)
+		fctx.SetStatusCode(http.StatusInternalServerError)
+		fctx.SetBodyString("Internal Server Error")
 	}
 
 	log.WithFields(log.Fields{
 		"sessionID": echoReq.Session.SessionID,
-		"body":      fmt.Sprintf("%v", ctx.PostBody())}).Info("HandleFastHTTP Request")
+		"body":      fmt.Sprintf("%v", fctx.PostBody())}).Info("HandleFastHTTP Request")
 
 	var echoResp *alexa.EchoResponse
 
+	ctx := context.Background()
+
 	switch echoReq.GetIntentName() {
 	case "RingCentralGetNewVoicemailCountIntent":
-		echoResp = voicemailcount.HandleRequest(h.Configuration, echoReq)
+		echoResp = voicemailcount.HandleRequest(ctx, h.Configuration, echoReq)
 	case "RingCentralSendSMSIntent":
-		echoResp = sms.HandleRequest(h.Configuration, echoReq)
+		echoResp = sms.HandleRequest(ctx, h.Configuration, echoReq)
 	case "RingCentralSendSMSIntentBody":
-		echoResp = smsbody.HandleRequest(h.Configuration, echoReq)
+		echoResp = smsbody.HandleRequest(ctx, h.Configuration, echoReq)
 	case "RingCentralCreateRingOutIntent":
-		echoResp = ringout.HandleRequest(h.Configuration, echoReq)
+		echoResp = ringout.HandleRequest(ctx, h.Configuration, echoReq)
 	default:
 		echoResp = alexa.NewEchoResponse().OutputSpeech("I'm sorry, I didn't get that. Can you say that again?").EndSession(false)
 	}
@@ -66,14 +69,14 @@ func (h *Handler) HandleFastHTTP(ctx *fasthttp.RequestCtx) {
 	if err != nil {
 		log.WithFields(log.Fields{
 			"sessionID": echoReq.Session.SessionID,
-			"body":      fmt.Sprintf("%v", ctx.PostBody())}).Warn("HandleFastHTTP Response JSON Marshal Error")
+			"body":      fmt.Sprintf("%v", fctx.PostBody())}).Warn("HandleFastHTTP Response JSON Marshal Error")
 	}
 	log.WithFields(log.Fields{
 		"sessionID": echoReq.Session.SessionID,
 		"body":      string(echoRespBytes)}).Info("HandleFastHTTP Response")
 
-	ctx.Response.Header.Set(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
-	fmt.Fprintln(ctx, string(echoRespBytes))
+	fctx.Response.Header.Set(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
+	fmt.Fprintln(fctx, string(echoRespBytes))
 }
 
 // StartServer initializes and starts the webhook proxy server

@@ -2,6 +2,7 @@ package ringout
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -18,7 +19,7 @@ import (
 	"github.com/grokify/alexa-skill-ringcentral-go/src/config"
 )
 
-func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
+func HandleRequest(ctx context.Context, cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.EchoResponse {
 	intent := echoReq.Request.Intent
 	firstName := intent.Slots["FirstName"].Value
 
@@ -63,7 +64,7 @@ func HandleRequest(cfg config.Configuration, echoReq *alexa.EchoRequest) *alexa.
 			Body:    bytes.NewReader(reqBytes)}
 		rcReq.Headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSONUtf8)
 
-		resp, err := cfg.Platform.APICall(rcReq)
+		resp, err := cfg.Platform.APICall(ctx, rcReq)
 		if err != nil {
 			log.WithFields(log.Fields{
 				"type":  "http request error",
