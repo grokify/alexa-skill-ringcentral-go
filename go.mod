@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/buaazp/fasthttprouter v0.1.1
-	github.com/grokify/mogo v0.64.11
+	github.com/grokify/mogo v0.66.2
 	github.com/grokify/ringcentral-sdk-go v0.3.7
 	github.com/joho/godotenv v1.5.1
 	github.com/mikeflynn/go-alexa v0.0.0-20211022155346-6d20dc2c7771
@@ -25,8 +25,8 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/urfave/negroni v1.0.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	golang.org/x/exp v0.0.0-20240909161429-701f63a606c0 // indirect
-	golang.org/x/net v0.29.0 // indirect
-	golang.org/x/sys v0.25.0 // indirect
-	golang.org/x/text v0.18.0 // indirect
+	golang.org/x/exp v0.0.0-20241210194714-1829a127f884 // indirect
+	golang.org/x/net v0.32.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 )
